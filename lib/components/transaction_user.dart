@@ -24,14 +24,39 @@ class _TransactionUserState extends State<TransactionUser> {
       value: 104.50,
       date: DateTime.now(),
     ),
+    Transaction(
+      id: 't3',
+      title: 'Novo asd',
+      value: 320.76,
+      date: DateTime.now(),
+    ),
+    Transaction(
+      id: 't4',
+      title: 'asd de luz',
+      value: 106.50,
+      date: DateTime.now(),
+    ),
   ];
+
+  _addTransaction(String title, double value) {
+    final newTransaction = Transaction(
+      id: _transactions.length.toString(),
+      title: title,
+      value: value,
+      date: DateTime.now(),
+    );
+
+    setState(() {
+      _transactions.add(newTransaction);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         TransactionList(_transactions),
-        TransactionForm(),
+        TransactionForm(_addTransaction),
       ],
     );
   }
