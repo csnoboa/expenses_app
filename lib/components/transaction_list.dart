@@ -5,12 +5,15 @@ import 'package:intl/intl.dart';
 class TransactionList extends StatelessWidget {
   final List<Transaction> transactions;
 
-  const TransactionList(this.transactions, {Key key}) : super(key: key);
+  const TransactionList(this.transactions, this.onRemove, {Key key})
+      : super(key: key);
+
+  final void Function(int) onRemove;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 370,
+      height: 600,
       child: ListView.builder(
           itemCount: transactions.length,
           itemBuilder: (cxt, index) {
@@ -26,7 +29,7 @@ class TransactionList extends StatelessWidget {
                     ),
                     decoration: BoxDecoration(
                       border: Border.all(
-                        color: Colors.purple,
+                        color: Theme.of(context).primaryColor,
                         width: 2,
                       ),
                     ),
@@ -36,7 +39,7 @@ class TransactionList extends StatelessWidget {
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 28,
-                        color: Colors.purple,
+                        color: Theme.of(context).primaryColor,
                       ),
                     ),
                   ),
@@ -45,16 +48,17 @@ class TransactionList extends StatelessWidget {
                     children: [
                       Text(
                         tr.title,
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                        ),
+                        style: Theme.of(context).textTheme.headline6,
                       ),
                       Text(DateFormat('dd MM y').format(tr.date),
                           style: TextStyle(
                             color: Colors.grey,
                           )),
                     ],
+                  ),
+                  IconButton(
+                    icon: Icon(Icons.remove),
+                    onPressed: () => onRemove(index),
                   ),
                 ],
               ),
