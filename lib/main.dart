@@ -75,18 +75,18 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   final List<Transaction> _transactions = [
-    Transaction(
-      id: 't1',
-      title: 'Novo tênis',
-      value: 310.76,
-      date: DateTime.now(),
-    ),
-    Transaction(
-      id: 't2',
-      title: 'Conta de luz',
-      value: 104.50,
-      date: DateTime.now(),
-    ),
+    // Transaction(
+    //   id: 't1',
+    //   title: 'Novo tênis',
+    //   value: 310.76,
+    //   date: DateTime.now(),
+    // ),
+    // Transaction(
+    //   id: 't2',
+    //   title: 'Conta de luz',
+    //   value: 104.50,
+    //   date: DateTime.now(),
+    // ),
   ];
 
   @override
