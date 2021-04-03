@@ -1,3 +1,4 @@
+import 'package:expenses_app/components/chart.dart';
 import 'package:expenses_app/components/transaction_form.dart';
 import 'package:expenses_app/components/transaction_list.dart';
 import 'package:expenses_app/models/transaction.dart';
@@ -75,19 +76,31 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   final List<Transaction> _transactions = [
-    // Transaction(
-    //   id: 't1',
-    //   title: 'Novo tênis',
-    //   value: 310.76,
-    //   date: DateTime.now(),
-    // ),
-    // Transaction(
-    //   id: 't2',
-    //   title: 'Conta de luz',
-    //   value: 104.50,
-    //   date: DateTime.now(),
-    // ),
+    Transaction(
+      id: 't0',
+      title: 'Antiga',
+      value: 8810.76,
+      date: DateTime.now().subtract(Duration(days: 50)),
+    ),
+    Transaction(
+      id: 't1',
+      title: 'Novo tênis',
+      value: 310.76,
+      date: DateTime.now().subtract(Duration(days: 1)),
+    ),
+    Transaction(
+      id: 't2',
+      title: 'Conta de luz',
+      value: 104.50,
+      date: DateTime.now().subtract(Duration(days: 4)),
+    ),
   ];
+
+  List<Transaction> get _recentTransactions {
+    return _transactions.where((tr) {
+      return tr.date.isAfter(DateTime.now().subtract(Duration(days: 7)));
+    }).toList();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -110,10 +123,7 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Card(
-              child: Text('Gráfico'),
-              elevation: 5,
-            ),
+            Chart(_recentTransactions),
             TransactionList(_transactions, _removeTransaction),
           ],
         ),
