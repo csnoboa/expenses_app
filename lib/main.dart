@@ -123,7 +123,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       actions: [
-        if (_isLandscape)
+        if (_isLandscape && !Platform.isWindows)
           IconButton(
             icon: _showChart ? Icon(Icons.list) : Icon(Icons.pie_chart),
             onPressed: () {
@@ -149,14 +149,14 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            if (_showChart || !_isLandscape)
+            if (_showChart || !_isLandscape || Platform.isWindows)
               Container(
                 height: _isLandscape
                     ? availableHeight * 0.75
                     : availableHeight * 0.3,
                 child: Chart(_recentTransactions),
               ),
-            if (!_showChart || !_isLandscape)
+            if (!_showChart || !_isLandscape || Platform.isWindows)
               Container(
                 height: _isLandscape ? availableHeight : availableHeight * 0.7,
                 child: TransactionList(_transactions, _removeTransaction),
