@@ -91,15 +91,15 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    bool _isLandscape =
-        MediaQuery.of(context).orientation == Orientation.landscape;
+    final mediaQuery = MediaQuery.of(context);
+    bool _isLandscape = mediaQuery.orientation == Orientation.landscape;
 
     final appBar = AppBar(
       title: Text(
         'Expenses',
         style: TextStyle(
           fontFamily: 'OpenSans',
-          fontSize: 20 * MediaQuery.of(context).textScaleFactor,
+          fontSize: 20 * mediaQuery.textScaleFactor,
         ),
       ),
       actions: [
@@ -119,7 +119,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ],
     );
 
-    final availableHeight = MediaQuery.of(context).size.height -
+    final availableHeight = mediaQuery.size.height -
         appBar.preferredSize.height -
         MediaQuery.of(context).padding.top;
 
@@ -138,7 +138,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             if (!_showChart || !_isLandscape)
               Container(
-                height: availableHeight * 0.75,
+                height: _isLandscape ? availableHeight : availableHeight * 0.7,
                 child: TransactionList(_transactions, _removeTransaction),
               ),
           ],

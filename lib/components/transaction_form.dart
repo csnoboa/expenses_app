@@ -45,65 +45,72 @@ class _TransactionFormState extends State<TransactionForm> {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 5,
-      child: Padding(
-        padding: const EdgeInsets.all(10),
-        child: Column(
-          children: [
-            TextField(
-              controller: _titleController,
-              onSubmitted: (_) => _subimitForm(),
-              decoration: InputDecoration(
-                labelText: 'Título',
+    return SingleChildScrollView(
+      child: Card(
+        elevation: 5,
+        child: Padding(
+          padding: EdgeInsets.only(
+            top: 10,
+            right: 10,
+            left: 10,
+            bottom: 10 + MediaQuery.of(context).viewInsets.bottom,
+          ),
+          child: Column(
+            children: [
+              TextField(
+                controller: _titleController,
+                onSubmitted: (_) => _subimitForm(),
+                decoration: InputDecoration(
+                  labelText: 'Título',
+                ),
               ),
-            ),
-            TextField(
-              controller: _valueController,
-              keyboardType: TextInputType.numberWithOptions(decimal: true),
-              onSubmitted: (_) => _subimitForm(),
-              decoration: InputDecoration(
-                labelText: 'Valor (R\$)',
+              TextField(
+                controller: _valueController,
+                keyboardType: TextInputType.numberWithOptions(decimal: true),
+                onSubmitted: (_) => _subimitForm(),
+                decoration: InputDecoration(
+                  labelText: 'Valor (R\$)',
+                ),
               ),
-            ),
-            Container(
-              height: 70,
-              child: Row(
+              Container(
+                height: 70,
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Text(
+                        _selectedDate == null
+                            ? 'Nenhuma data selecionada'
+                            : 'Data Selecionada: ${DateFormat('dd/MM/y').format(_selectedDate)}',
+                      ),
+                    ),
+                    TextButton(
+                      child: Text(
+                        'Selecionar Data',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      onPressed: _showDatePicker,
+                    ),
+                  ],
+                ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  Expanded(
+                  ElevatedButton(
                     child: Text(
-                      _selectedDate == null
-                          ? 'Nenhuma data selecionada'
-                          : 'Data Selecionada: ${DateFormat('dd/MM/y').format(_selectedDate)}',
+                      'Nova transação',
+                      style: Theme.of(context).textTheme.button,
                     ),
-                  ),
-                  TextButton(
-                    child: Text(
-                      'Selecionar Data',
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                    onPressed: _showDatePicker,
+                    onPressed: () {
+                      debugPrint(_titleController.text);
+                      debugPrint(_valueController.text);
+                      _subimitForm();
+                    },
                   ),
                 ],
               ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                ElevatedButton(
-                  child: Text(
-                    'Nova transação',
-                    style: Theme.of(context).textTheme.button,
-                  ),
-                  onPressed: () {
-                    debugPrint(_titleController.text);
-                    debugPrint(_valueController.text);
-                    _subimitForm();
-                  },
-                ),
-              ],
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
