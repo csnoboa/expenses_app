@@ -4,7 +4,7 @@ class Transaction {
   final String id;
   final String title;
   final double value;
-  final DateTime date;
+  final String date;
 
   Transaction({
     @required this.id,
@@ -12,4 +12,17 @@ class Transaction {
     @required this.value,
     @required this.date,
   });
+
+  Transaction.fromJson(Map<String, dynamic> json)
+      : id = json['id'],
+        title = json['title'],
+        value = json['value'],
+        date = json['date'];
+
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'title': title,
+        'value': value,
+        'date': date,
+      };
 }

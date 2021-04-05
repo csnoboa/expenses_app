@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class TransactionForm extends StatefulWidget {
-  final void Function(String, double, DateTime) onSubmit;
+  final void Function(String, double, String) onSubmit;
 
   TransactionForm(this.onSubmit);
 
@@ -23,7 +23,7 @@ class _TransactionFormState extends State<TransactionForm> {
       return;
     }
 
-    widget.onSubmit(title, value, _selectedDate);
+    widget.onSubmit(title, value, DateFormat('dd/MM/y').format(_selectedDate));
   }
 
   _showDatePicker() {
@@ -39,7 +39,6 @@ class _TransactionFormState extends State<TransactionForm> {
       setState(() {
         _selectedDate = pickedDate;
       });
-      debugPrint(pickedDate.toString());
     });
   }
 
@@ -102,8 +101,8 @@ class _TransactionFormState extends State<TransactionForm> {
                       style: Theme.of(context).textTheme.button,
                     ),
                     onPressed: () {
-                      debugPrint(_titleController.text);
-                      debugPrint(_valueController.text);
+                      // debugPrint(_titleController.text);
+                      // debugPrint(_valueController.text);
                       _subimitForm();
                     },
                   ),

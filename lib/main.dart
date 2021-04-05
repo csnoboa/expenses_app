@@ -3,6 +3,7 @@ import 'package:expenses_app/components/chart.dart';
 import 'package:expenses_app/components/transaction_form.dart';
 import 'package:expenses_app/components/transaction_list.dart';
 import 'package:expenses_app/models/transaction.dart';
+import 'package:expenses_app/storage/transaction_storage.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -60,7 +61,7 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  _addTransaction(String title, double value, DateTime date) {
+  _addTransaction(String title, double value, String date) {
     final newTransaction = Transaction(
       id: _transactions.length.toString(),
       title: title,
@@ -72,21 +73,29 @@ class _MyHomePageState extends State<MyHomePage> {
       _transactions.add(newTransaction);
     });
 
+    TransactionStorage().writeTransaction(_transactions);
+
     Navigator.of(context).pop();
   }
 
   _removeTransaction(int index) {
     setState(() {
       _transactions.removeAt(index);
+      TransactionStorage().writeTransaction(_transactions);
     });
   }
 
   final List<Transaction> _transactions = [];
+
   bool _showChart = true;
 
   List<Transaction> get _recentTransactions {
     return _transactions.where((tr) {
-      return tr.date.isAfter(DateTime.now().subtract(Duration(days: 7)));
+      String date = tr.date.replaceAll('/', '');
+      date = date.substring(4, 8) + date.substring(2, 4) + date.substring(0, 2);
+      DateTime dateTransaction = DateTime.parse(date);
+      return dateTransaction
+          .isAfter(DateTime.now().subtract(Duration(days: 7)));
     }).toList();
   }
 
@@ -94,6 +103,16 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     final mediaQuery = MediaQuery.of(context);
     bool _isLandscape = mediaQuery.orientation == Orientation.landscape;
+
+    TransactionStorage().readTransaction().then((value) {
+      if (value != null && _transactions.isEmpty) {
+        setState(() {
+          for (var i in value) {
+            _transactions.add(i);
+          }
+        });
+      }
+    });
 
     final appBar = AppBar(
       title: Text(

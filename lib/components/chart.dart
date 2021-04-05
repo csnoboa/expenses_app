@@ -17,9 +17,14 @@ class Chart extends StatelessWidget {
       double totalSum = 0.0;
 
       for (int i = 0; i < recentTransactions.length; i++) {
-        bool sameDay = recentTransactions[i].date.day == weekDay.day;
-        bool sameMonth = recentTransactions[i].date.month == weekDay.month;
-        bool sameYear = recentTransactions[i].date.year == weekDay.year;
+        String date = recentTransactions[i].date.replaceAll('/', '');
+        date =
+            date.substring(4, 8) + date.substring(2, 4) + date.substring(0, 2);
+        DateTime dateTransaction = DateTime.parse(date);
+
+        bool sameDay = dateTransaction.day == weekDay.day;
+        bool sameMonth = dateTransaction.month == weekDay.month;
+        bool sameYear = dateTransaction.year == weekDay.year;
 
         if (sameDay && sameMonth && sameYear) {
           totalSum += recentTransactions[i].value;
