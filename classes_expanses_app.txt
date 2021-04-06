@@ -1,0 +1,58 @@
+- CRUD Conta Bancária (como padrão ter a conta Dinheiro)
+	- Saldo
+	- Lista de notas
+	- Descrição
+
+
+- CRUD Cartão de Crédito
+	- Saldo
+	- Lista de notas
+	- Descrição
+	- Data de fechamento da fatura
+	- Data de pagamento (gerar uma nota com a data de pagamento e associar a uma conta)
+
+- CRUD Nota
+	- Valor
+	- Descrição
+	- Data
+	- Conta/Cartão Associado
+	- Categoria Associada
+	- Nota Mensal (é cobrado todos os meses, padrão: não. Obs: Possibilidade de alterar a nota individual ou todo o conjunto das notas)
+	- Parcela atual (padrão 1)
+	- Quantidade total de parcelar (padrão 1)
+
+- CRUD Categoria
+	- Descrição
+	- Cor
+	- Lista de notas
+		- Filtrar notas pela data (por mês por exemplo)
+
+
+- CRUD Nota parcelada
+	- Numero de parcelas
+	- Data de cobrança
+	- Cartão associado
+	- Lista de notas
+	- Valor individual de cada nota (possivel ser diferente)
+
+- CRUD Nota Mensal
+	- Valor padrão
+	- Data de cobrança
+	- Conta/Cartão associado
+	- Lista de notas
+	- Valor individual de cada nota (possivel ser diferente)
+
+- Chart (gráfico de uso)
+	- Gasto por categoria (selecionar por data)
+	
+
+- CRUD Usuário
+	- Nome
+	- Senha
+	- Database:
+		- Lista de todas as categorias
+		- Lista de todas as contas
+		- Lista de todos os cartões
+		- Saldo Total
+
+
