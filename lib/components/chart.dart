@@ -5,7 +5,6 @@ import 'package:intl/intl.dart';
 
 class Chart extends StatelessWidget {
   const Chart(this.recentTransactions, {Key key}) : super(key: key);
-
   final List<Transaction> recentTransactions;
 
   List<Map<String, Object>> get groupedTransactions {
