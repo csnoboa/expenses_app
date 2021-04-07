@@ -1,13 +1,15 @@
 - CRUD Conta Bancária (como padrão ter a conta Dinheiro)
 	- Título
-	- Saldo
+	- Saldo Real
+	- Saldo Previsto
 	- Lista de notas
 	- Descrição
 
 
 - CRUD Cartão de Crédito
 	- Título
-	- Saldo
+	- Saldo Real
+	- Saldo Previsto
 	- Lista de notas
 	- Descrição
 	- Data de fechamento da fatura
@@ -20,6 +22,7 @@
 	- Data
 	- Conta/Cartão Associado
 	- Categoria Associada
+	- Concluido (bool para marcar caso a nota já tenha sido paga/recebida)
 	- Nota Mensal (é cobrado todos os meses, padrão: não. Obs: Possibilidade de alterar a nota individual ou todo o conjunto das notas)
 	- Parcela atual (padrão 1)
 	- Quantidade total de parcelar (padrão 1)
