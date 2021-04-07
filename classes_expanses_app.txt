@@ -1,10 +1,12 @@
 - CRUD Conta Bancária (como padrão ter a conta Dinheiro)
+	- Título
 	- Saldo
 	- Lista de notas
 	- Descrição
 
 
 - CRUD Cartão de Crédito
+	- Título
 	- Saldo
 	- Lista de notas
 	- Descrição
