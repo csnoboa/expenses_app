@@ -11,8 +11,9 @@
 	- Data de fechamento da fatura
 	- Data de pagamento (gerar uma nota com a data de pagamento e associar a uma conta)
 
-- CRUD Nota
+- CRUD Nota (transaction)
 	- Valor
+	- Título
 	- Descrição
 	- Data
 	- Conta/Cartão Associado
