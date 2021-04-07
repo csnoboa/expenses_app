@@ -61,4 +61,6 @@
 		- Lista de todos os cartões
 		- Saldo Total
 
+Date compare: 
 
+isBefore(String date, DateTime dateTime): true if date < dateTime

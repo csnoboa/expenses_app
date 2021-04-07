@@ -5,7 +5,6 @@ import 'package:flutter/foundation.dart';
 /// ```dart
 /// - @required String id: unique Transaction identifier
 ///
-///
 /// - @required String title: Transaction title
 ///
 /// - @required double value: Transaction value
