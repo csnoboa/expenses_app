@@ -2,9 +2,32 @@ import 'package:expenses_app/models/transaction.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+/// Class Account
+/// The Account class represents a Bank Account that has the following arguments:
+/// ```dart
+/// @required String title: Account title
+/// String description: Account description
+///
+///
+/// ```
+/// And the following methods:
+/// ```dart
+/// void addTransaction(Transaction tr): add a Transaction to the account
+/// void removeTransaction(Transaction tr): remove the Transaction tr from the Account
+/// int sizeTransactions(): returns the number of registered transactions
+///
+/// List<Transaction> getTransactions(): returns all the transactions
+///
+/// double getExpectedBalance(DateTime date): returns the expected balance in the account by the date "date"
+///
+/// double getActualBalance(DateTime date): returns the actual balance in the account by the date "date"
+///   - calculates only completed transactions (completed = true)
+///
+/// ```
 class Account {
   final String title;
-  double _balance = 0;
+  double _expectedBalance = 0;
+  double _actualBalance = 0;
   List<Transaction> _transactions;
   String description;
 
@@ -29,23 +52,34 @@ class Account {
     return _transactions;
   }
 
-  double getBalance() {
-    _balance = 0;
+  double getExpectedBalance(DateTime date) {
+    //To do: filter the _transactions by the date (all the _transactions before the date)
+    _expectedBalance = 0;
     for (var i in _transactions) {
-      _balance += i.value;
+      _expectedBalance += i.value;
     }
-    return _balance;
+    return _expectedBalance;
+  }
+
+  double getActualBalance(DateTime date) {
+    //To do: filter the _transactions by the date (all the _transactions before the date)
+
+    _actualBalance = 0;
+    for (var i in _transactions) {
+      if (i.completed) {
+        _actualBalance += i.value;
+      }
+    }
+    return _actualBalance;
   }
 
   Account.fromJson(Map<String, dynamic> json)
       : title = json['title'],
-        _balance = json['_balance'],
         _transactions = json['_transactions'],
         description = json['description'];
 
   Map<String, dynamic> toJson() => {
         'title': title,
-        '_balance': _balance,
         'description': description,
         '_transactions': _transactions,
       };
