@@ -31,6 +31,9 @@ import 'package:flutter/foundation.dart';
 ///
 /// - int totalInstallments: the total number of installments (1 if it is a single note)
 ///     - default: 1
+///
+/// - String categoryTitle: title of the category
+///   - default: ""  (does not belong to any category)
 /// ```
 class Transaction {
   final String id;
@@ -42,17 +45,19 @@ class Transaction {
   bool monthly;
   int installments;
   int totalInstallments;
+  String categoryTitle;
 
   Transaction({
     @required this.id,
     @required this.title,
     @required this.value,
     @required this.date,
-    this.description = " ",
+    this.description = "",
     this.monthly = false,
     this.completed = false,
     this.installments = 1,
     this.totalInstallments = 1,
+    this.categoryTitle = "",
   });
 
   Transaction.fromJson(Map<String, dynamic> json)
@@ -64,7 +69,8 @@ class Transaction {
         monthly = json['monthly'],
         completed = json['completed'],
         installments = json['installments'],
-        totalInstallments = json['totalInstallments'];
+        totalInstallments = json['totalInstallments'],
+        categoryTitle = json['categoryTitle'];
 
   Map<String, dynamic> toJson() => {
         'id': id,
@@ -76,5 +82,6 @@ class Transaction {
         'completed': completed,
         'installments': installments,
         'totalInstallments': totalInstallments,
+        'categoryTitle': categoryTitle,
       };
 }

@@ -28,6 +28,7 @@
 	- Quantidade total de parcelar (padrão 1)
 
 - CRUD Categoria
+	- Título
 	- Descrição
 	- Cor
 	- Lista de notas

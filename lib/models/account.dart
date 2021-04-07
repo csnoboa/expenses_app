@@ -54,8 +54,10 @@ class Account {
 
   double getExpectedBalance(DateTime date) {
     //To do: filter the _transactions by the date (all the _transactions before the date)
+
     _expectedBalance = 0;
     for (var i in _transactions) {
+      // if i.date < date
       _expectedBalance += i.value;
     }
     return _expectedBalance;
@@ -66,6 +68,7 @@ class Account {
 
     _actualBalance = 0;
     for (var i in _transactions) {
+      // if i.date < date
       if (i.completed) {
         _actualBalance += i.value;
       }
