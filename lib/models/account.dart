@@ -18,6 +18,12 @@ import 'package:flutter/material.dart';
 ///
 /// List<Transaction> getTransactions(): returns all the transactions
 ///
+/// void addMensalTransaction(Transaction tr): add a Mensal Transaction to the account
+/// void removeMensalTransaction(Transaction tr): remove the Mensal Transaction tr from the Mensal Transactions list
+/// int sizeMensalTransactions(): returns the number of registered mensal transactions
+///
+/// List<Transaction> getMensalTransactions(): returns all the mensal transactions
+///
 ///
 /// double getExpectedBalance(DateTime date): returns the expected balance in the account by the date "date"
 ///
