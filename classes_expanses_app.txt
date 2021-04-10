@@ -63,5 +63,8 @@
 		- Saldo Total
 
 Date compare: 
+DateTime to String
+String to DateTime
 
+isBeteween(String date, DateTime start, Datetime end)
 isBefore(String date, DateTime dateTime): true if date < dateTime
