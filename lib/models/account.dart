@@ -18,6 +18,7 @@ import 'package:flutter/material.dart';
 ///
 /// List<Transaction> getTransactions(): returns all the transactions
 ///
+///
 /// double getExpectedBalance(DateTime date): returns the expected balance in the account by the date "date"
 ///
 /// double getActualBalance(DateTime date): returns the actual balance in the account by the date "date"
@@ -29,6 +30,7 @@ class Account {
   double _expectedBalance = 0;
   double _actualBalance = 0;
   List<Transaction> _transactions;
+  List<Transaction> _mensalTransactions;
   String description;
 
   Account({
@@ -40,15 +42,35 @@ class Account {
     _transactions.add(tr);
   }
 
+  void addMensalTransaction(Transaction tr) {
+    //para essa data em diante
+    _mensalTransactions.add(tr);
+    _transactions.add(tr);
+  }
+
   int sizeTransactions() {
     return _transactions.length;
+  }
+
+  int sizeMensalTransactions() {
+    return _mensalTransactions.length;
   }
 
   void removeTransaction(Transaction tr) {
     _transactions.remove(tr);
   }
 
+  void removeMensalTransaction(Transaction tr) {
+    //para essa data em diante
+    _mensalTransactions.remove(tr);
+    _transactions.remove(tr);
+  }
+
   List<Transaction> getTransactions() {
+    return _transactions;
+  }
+
+  List<Transaction> getMensalTransactions() {
     return _transactions;
   }
 
