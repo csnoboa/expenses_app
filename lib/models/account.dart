@@ -1,3 +1,4 @@
+import 'package:expenses_app/controllers/date_controller.dart';
 import 'package:expenses_app/models/transaction.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -85,8 +86,10 @@ class Account {
 
     _expectedBalance = 0;
     for (var i in _transactions) {
-      // if i.date < date
-      _expectedBalance += i.value;
+      if (DateController()
+          .isBefore(DateController().stringToDateTime(i.date), date)) {
+        _expectedBalance += i.value;
+      }
     }
     return _expectedBalance;
   }
@@ -96,9 +99,11 @@ class Account {
 
     _actualBalance = 0;
     for (var i in _transactions) {
-      // if i.date < date
-      if (i.completed) {
-        _actualBalance += i.value;
+      if (DateController()
+          .isBefore(DateController().stringToDateTime(i.date), date)) {
+        if (i.completed) {
+          _actualBalance += i.value;
+        }
       }
     }
     return _actualBalance;
