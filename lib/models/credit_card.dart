@@ -13,6 +13,7 @@ import 'package:flutter/material.dart';
 /// And the following methods:
 /// ```dart
 /// void addTransaction(Transaction tr): add a Transaction to the credit card
+/// void addInstallmentTransaction(Transaction tr, int numberInstallment): add a Installment Transaction to the credit card
 /// void removeTransaction(Transaction tr): remove the Transaction tr from the CreditCard
 /// int sizeTransactions(): returns the number of registered transactions
 ///
@@ -41,11 +42,19 @@ class CreditCard {
 
   void addInstallmentTransaction(Transaction tr, int numberInstallment) {
     for (int i = 0; i < numberInstallment; i++) {
-      Transaction newTransaction = tr;
-      //DateTime newDate = tr.date + um mês
-      newTransaction.installments = i + 1;
-      newTransaction.totalInstallments = numberInstallment;
-      //newTransaction.date = newDate;
+      String newDate;
+      //newDate = tr.date+1month;
+      Transaction newTransaction = Transaction(
+        id: tr.id,
+        title: tr.title + (i + 1).toString(),
+        date: newDate,
+        value: tr.value / (i + 1),
+        categoryTitle: tr.categoryTitle,
+        installments: i + 1,
+        totalInstallments: numberInstallment,
+        description: tr.description,
+      );
+
       _transactions.add(newTransaction);
     }
   }
