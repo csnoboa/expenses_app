@@ -39,6 +39,17 @@ class CreditCard {
     _transactions.add(tr);
   }
 
+  void addInstallmentTransaction(Transaction tr, int numberInstallment) {
+    for (int i = 0; i < numberInstallment; i++) {
+      Transaction newTransaction = tr;
+      //DateTime newDate = tr.date + um mês
+      newTransaction.installments = i + 1;
+      newTransaction.totalInstallments = numberInstallment;
+      //newTransaction.date = newDate;
+      _transactions.add(newTransaction);
+    }
+  }
+
   int sizeTransactions() {
     return _transactions.length;
   }
