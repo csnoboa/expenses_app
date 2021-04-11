@@ -10,10 +10,19 @@
 	- Título
 	- Saldo Real
 	- Saldo Previsto
-	- Lista de notas
+	- Lista de notas (Todas as notas do cartão)
 	- Descrição
 	- Data de fechamento da fatura
 	- Data de pagamento (gerar uma nota com a data de pagamento e associar a uma conta)
+	- Lista de faturas do mês (uma fatura para cada mês que contem nota)
+
+- Fatura do mês (seria uma classe?)
+	- Dia de início
+	- Dia de fechamento
+	- Dia de pagamento (gerará uma nota com o valor a ser pago)
+	- Mês
+	- Valor Fatura
+	- Lista de notas
 
 - CRUD Nota (transaction)
 	- Valor
