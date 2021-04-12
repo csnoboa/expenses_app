@@ -72,8 +72,15 @@
 		- Saldo Total
 
 Date compare: 
-DateTime to String
-String to DateTime
+	DateTime to String
+	String to DateTime
 
-isBeteween(String date, DateTime start, Datetime end)
-isBefore(String date, DateTime dateTime): true if date < dateTime
+	isBeteween(String date, DateTime start, Datetime end)
+	isBefore(String date, DateTime dateTime): true if date < dateTime
+
+
+AppController:
+	Lista de categorias
+	Lista de contas bancárias
+	Lista de cartões de Crédito
+	
